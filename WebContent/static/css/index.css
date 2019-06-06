@@ -1,2 +1,6 @@
-@import "./common.css"
+@import "./common.css";
 
+#main{
+	width: 100%;
+	padding: 50px 100px;
+}

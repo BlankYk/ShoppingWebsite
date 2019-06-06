@@ -16,6 +16,7 @@ header{
 	float: left;
 	background-image:url("../img/logo.png");
 	background-size: 50px 50px;
+	margin-left: 50px;
 }
 
 .user{
@@ -29,7 +30,7 @@ ul{
 	margin: 0px;
 }
 header>ul{
-	margin-left: 100px;
+	margin-left: 150px;
 }
 header>ul>li{
 	width: 100px;
