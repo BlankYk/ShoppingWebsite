@@ -1,0 +1,30 @@
+<script src="./static/js/jquery.js"></script>
+<div id="registered">
+	<form action="/ShoppingWebsite/Registered" method="post" id="registered">
+		<p>
+			用户名：<input type="text" name="username" placeholder="username"
+				required />
+		</p>
+		<p>
+			密码：<input type="password" name="password" id="pwd"
+				placeholder="password" required />
+		</p>
+		<p>
+			确认密码：<input type="password" id="pwd2" placeholder="再次输入密码" />
+		</p>
+		<input type="submit" value="注册" id="sub" class="btn btn-default" /> <input
+			type="reset" value="重置" class="btn btn-default" />
+			<script>
+	//注册验证
+	$("#registered").validate({
+		rules : {
+			pwd : "required",
+			pwd2 : {
+				equalTo : "#pwd"
+			}
+		}
+	});
+	</script>
+	</form>
+	
+</div>
