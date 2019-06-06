@@ -53,7 +53,6 @@ public class Login extends HttpServlet {
 		userDo.setPwd(password);
 		try {
 			boolean flag = jdbcDao.login(userDo);
-			System.out.println(flag);
 			if(flag) {
 				HttpSession session = request.getSession();
 				session.setAttribute("username", username);

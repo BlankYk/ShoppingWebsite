@@ -7,14 +7,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Welcome</title>
 <link rel="icon" href="./favicon.ico" />
-<link rel="stylesheet" href="./static/css/index.css" />
 <link rel="stylesheet" href="./static/bootstrap/css/bootstrap.min.css" />
 <script src="./static/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="./static/css/index.css" />
+<link rel="stylesheet" href="./static/css/header.css" />
 <script src="./static/js/jquery.js"></script>
 </head>
 <body>
 	<%@ include file="./header.jsp" %>
-	<div id="main"></div>
+	<div id="main">
+		
+	</div>
 	<script src="./static/js/index.js" ></script>
 </body>
 </html>

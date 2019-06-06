@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" href="./static/css/header.css" />
 <header> 
 	<a href="/ShoppingWebsite/index.jsp" class="header_logo"></a> 
+	<ul>
+		<li><a href="/ShoppingWebsite/index.jsp" class="active">首页</a></li>
+		<li><a href="/ShoppingWebsite/find.jsp">查询</a></li>
+	</ul>
 	<div class="user">
 		
 		<%if (session.getAttribute("username") !=null){ %>
@@ -12,6 +14,5 @@
 			<button onclick="login()" class="btn btn-default">登录</button>
 			<button onclick="registered()" class="btn btn-default">注册</button>
 		<% }%>
-		
 	</div>
 </header>
