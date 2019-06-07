@@ -37,7 +37,6 @@ public class JDBCDao{
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt = conn.prepareStatement(sql);
-			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userDo.getName());
 			pstmt.setString(2, userDo.getPwd());
 			ResultSet rs = pstmt.executeQuery();
@@ -50,6 +49,46 @@ public class JDBCDao{
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
+		}
+	}
+	
+	public boolean addCart(String username,String[] cart) {
+		Connection conn = DbUtil.getConnection();
+		String sql = "update user set cart = ? where username = ?";
+		try {
+			String carts = findCart(username);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
+			for(int i=1;i<=cart.length;i++) {
+				pstmt.setString(i, carts+=","+cart[i-1]);
+			}
+			int flag = pstmt.executeUpdate();
+//			System.out.println(flag);
+			if(flag>=0) {
+				return true;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public String findCart(String username) {
+		Connection conn = DbUtil.getConnection();
+		String sql = "select cart from user where username = "+username;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getString("cart");
+			}else {
+				return "购物车为空";
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return "查询异常";
 		}
 	}
 

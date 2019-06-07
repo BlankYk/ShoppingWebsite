@@ -21,7 +21,7 @@
 		<%if(session.getAttribute("username") != null){ %>
 			<%@ include file="./shopping.jsp" %>
 		<%}else{ %>
-			<%@ include file="./login.html" %>
+			<%@ include file="./login.jsp" %>
 		<%} %>
 	</div>
 	<script src="./static/js/index.js" ></script>
