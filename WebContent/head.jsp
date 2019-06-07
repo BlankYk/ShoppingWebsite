@@ -5,6 +5,8 @@
 <title>Welcome</title>
 <link rel="icon" href="./favicon.ico" />
 <link rel="stylesheet" href="./static/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="./static/css/header.css" />
+
 <script src="./static/js/jquery.js"></script>
 <script src="./static/bootstrap/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="./static/css/header.css" />
+<script src="./static/js/validator.min.js"></script>
