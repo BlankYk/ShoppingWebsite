@@ -3,8 +3,8 @@
 <header> 
 	<a href="/ShoppingWebsite/index.jsp" class="header_logo"></a> 
 	<ul>
-		<li><a href="/ShoppingWebsite/index.jsp" class="active">首页</a></li>
-		<li><a href="/ShoppingWebsite/find.jsp">查询</a></li>
+		<li><a href="/ShoppingWebsite/index.jsp" id="home" class="">首页</a></li>
+		<li><a href="/ShoppingWebsite/find.jsp" id="find" class="">查询</a></li>
 	</ul>
 	<div class="user">
 		

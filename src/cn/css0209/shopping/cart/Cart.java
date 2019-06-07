@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import cn.css0209.shopping.dao.JDBCDao;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
 
 /**
  * Servlet implementation class Cart
@@ -22,12 +24,14 @@ import cn.hutool.json.JSONObject;
 public class Cart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private JDBCDao jdbcDao;
+	private Log log =null;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Cart() {
         super();
+        log = LogFactory.get(getClass());
         jdbcDao = new JDBCDao();
         // TODO Auto-generated constructor stub
     }
@@ -46,6 +50,8 @@ public class Cart extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//接受json数据
+		HttpSession session = request.getSession();
+		String username = session.getAttribute("username").toString();
 		String json = request.getReader().readLine();
 		JSONObject jsonObj = new JSONObject(json);
 		JSONArray cart = jsonObj.getJSONArray("cart");
@@ -53,17 +59,17 @@ public class Cart extends HttpServlet {
 		for(int i=0;i<arr.length;i++) {
 			arr[i] = cart.getStr(i);
 		}
-		HttpSession session = request.getSession();
-		String username = session.getAttribute("username").toString();
 		
 		//返回
 		JSONObject result = new JSONObject();
 		response.setContentType("application/json;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		if(jdbcDao.addCart(username, arr)) {
+			log.info(username+"向购物车添加商品："+cart+" 成功");
 			result.put("result", "success");
 			result.put("msg","已添加到购物车");
 		}else {
+			log.info(username+"向购物车添加商品："+cart+" 失败");
 			result.put("result","fail");
 			result.put("msg", "添加到购物车失败,商品可能已经存在");
 		}

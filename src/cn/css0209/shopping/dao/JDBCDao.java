@@ -65,7 +65,6 @@ public class JDBCDao{
 					return false;
 				}
 			}
-			log.debug("carts:"+carts);
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt = conn.prepareStatement(sql);
 			for(int i=1;i<=cart.length;i++) {

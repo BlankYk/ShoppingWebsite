@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import cn.css0209.shopping.dao.JDBCDao;
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
 
 /**
  * Servlet implementation class Login
@@ -19,12 +21,13 @@ import cn.css0209.shopping.dao.JDBCDao;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private JDBCDao jdbcDao;
-       
+    private Log log;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Login() {
         super();
+        log = LogFactory.get(getClass());
         jdbcDao = new JDBCDao();
         // TODO Auto-generated constructor stub
     }
@@ -54,11 +57,14 @@ public class Login extends HttpServlet {
 		try {
 			boolean flag = jdbcDao.login(userDo);
 			if(flag) {
+				
 				HttpSession session = request.getSession();
 				session.setAttribute("username", username);
 				session.setAttribute("password", password);
+				log.debug("用户 "+username+" 登陆成功");
 				out.print("<script>window.location.assign('/ShoppingWebsite/');</script>");
 			}else {
+				log.debug("用户 "+username+" 登录失败，失败密码："+password);
 				out.print("<script>alert('用户名或密码错误！');history.back();</script>");
 			}
 		}catch(Exception e) {

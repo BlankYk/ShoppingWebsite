@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import cn.css0209.shopping.dao.JDBCDao;
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
 
 /**
  * Servlet implementation class Registered
@@ -17,12 +19,14 @@ import cn.css0209.shopping.dao.JDBCDao;
 public class Registered extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private JDBCDao jdbcDao;
+	private Log log;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public Registered() {
 		super();
+		log = LogFactory.get(getClass());
 		jdbcDao = new JDBCDao();
 		// TODO Auto-generated constructor stub
 	}
@@ -50,8 +54,7 @@ public class Registered extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String userName = request.getParameter("username");
 		String password = request.getParameter("password");
-		System.out.println(userName);
-		System.out.println(password);
+		log.debug("创建用户："+userName+"密码："+password);
 		try {
 			if (jdbcDao.add(userName, password)) {
 				out.print("<script>alert('注册成功！');</script>");

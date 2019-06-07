@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <div id="shopping">
 	<ul>
-		<li><input type="checkbox" name="cart" id="" value="book" />书籍</li>
-		<li><input type="checkbox" name="cart" id="" value="fruit" />水果</li>
-		<li><input type="checkbox" name="cart" id="" value="accessories" />饰品</li>
+		<li><input type="checkbox" name="cart" id="" value="书籍" />书籍</li>
+		<li><input type="checkbox" name="cart" id="" value="水果" />水果</li>
+		<li><input type="checkbox" name="cart" id="" value="饰品" />饰品</li>
 	</ul>
 	<button class="btn btn-default" onclick="addCart()">添加</button>
 	<a href="" class="btn btn-default">查询</a>
