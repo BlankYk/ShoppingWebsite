@@ -12,9 +12,7 @@
 	<div id="main">
 	<noscript><h1>请确认浏览器可以使用JavaScript脚本</h1></noscript>
 		<%if(session.getAttribute("username") != null){ %>
-			<div id="find">
-				
-			</div>
+			<%@ include file="./shopping.jsp" %>
 		<%}else{ %>
 			<%@ include file="./login.jsp" %>
 		<%} %>
