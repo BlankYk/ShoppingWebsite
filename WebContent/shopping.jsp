@@ -29,6 +29,7 @@
 			dataType : "json",
 			success: function (rep) {
 				console.log(rep);
+				alert(rep.msg);
 			}
 		});
 	}

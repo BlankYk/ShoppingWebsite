@@ -1,4 +1,3 @@
-<script src="./static/js/jquery.js"></script>
 <div id="registered">
 	<form action="/ShoppingWebsite/Registered" method="post" id="registered">
 		<p>
@@ -14,17 +13,6 @@
 		</p>
 		<input type="submit" value="注册" id="sub" class="btn btn-default" /> <input
 			type="reset" value="重置" class="btn btn-default" />
-			<script>
-	//注册验证
-	$("#registered").validate({
-		rules : {
-			pwd : "required",
-			pwd2 : {
-				equalTo : "#pwd"
-			}
-		}
-	});
-	</script>
 	</form>
 	
 </div>

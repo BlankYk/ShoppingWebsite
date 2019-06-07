@@ -65,7 +65,7 @@ public class Cart extends HttpServlet {
 			result.put("msg","已添加到购物车");
 		}else {
 			result.put("result","fail");
-			result.put("msg", "添加到购物车失败");
+			result.put("msg", "添加到购物车失败,商品可能已经存在");
 		}
 		out.print(result);
 	}
