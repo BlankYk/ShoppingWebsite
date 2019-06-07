@@ -60,8 +60,9 @@ public class JDBCDao{
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt = conn.prepareStatement(sql);
 			for(int i=1;i<=cart.length;i++) {
-				pstmt.setString(i, carts+=","+cart[i-1]);
+				pstmt.setString(1, carts+=cart[i-1]+",");
 			}
+			pstmt.setString(2, username);
 			int flag = pstmt.executeUpdate();
 //			System.out.println(flag);
 			if(flag>=0) {
@@ -80,10 +81,10 @@ public class JDBCDao{
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if(rs.next() && rs != null) {
 				return rs.getString("cart");
 			}else {
-				return "购物车为空";
+				return "";
 			}
 			
 		}catch(Exception e) {
