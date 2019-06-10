@@ -14,12 +14,13 @@ public class JDBCDao {
 	public boolean add(String name, String pwd) {
 		// TODO 自动生成的方法存根
 		Connection conn = DbUtil.getConnection();
-		String sql = "insert into user values(?,MD5(?),null)";
+		String sql = "insert into user values(?,MD5(?),?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, name);
 			pstmt.setString(2, pwd);
+			pstmt.setString(3, "");
 			if (pstmt.executeUpdate() > 0) {
 				return true;
 			}
@@ -35,7 +36,7 @@ public class JDBCDao {
 	public boolean login(UserDo userDo) {
 		// TODO 自动生成的方法存根
 		Connection conn = DbUtil.getConnection();
-		String sql = "select username,password from user where username=? and password=md5(?)";
+		String sql = "select username,password from user where username=? and password=MD5(?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt = conn.prepareStatement(sql);
@@ -76,28 +77,6 @@ public class JDBCDao {
 			if (flag >= 0) {
 				return true;
 			}
-		} catch (NullPointerException e) {
-			Connection conn2 = DbUtil.getConnection();
-			Log log2 = LogFactory.get(getClass());
-			String sql2 = "update user set cart = ? where username = ?";
-			PreparedStatement pstmt;
-			try {
-				pstmt = conn.prepareStatement(sql);
-
-				pstmt = conn.prepareStatement(sql);
-				for (int i = 0; i < cart.length; i++) {
-					pstmt.setString(1, "[" + cart[i] + "]");
-				}
-				pstmt.setString(2, username);
-				int flag = pstmt.executeUpdate();
-//			System.out.println(flag);
-				if (flag >= 0) {
-					return true;
-				}
-			} catch (SQLException e1) {
-				// TODO 自动生成的 catch 块
-				e1.printStackTrace();
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -112,7 +91,7 @@ public class JDBCDao {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, username);
 			ResultSet rs = pstmt.executeQuery();
-			if (rs.next() && rs != null) {
+			if (rs.next() & rs != null) {
 				return rs.getString("cart");
 			} else {
 				return "";
