@@ -7,7 +7,7 @@
 		<li><input type="checkbox" name="cart" id="" value="饰品" />饰品</li>
 	</ul>
 	<button class="btn btn-default" onclick="addCart()">添加</button>
-	<a href="" class="btn btn-default">查询</a>
+	<a href="/ShoppingWebsite/find.jsp" class="btn btn-default">查询</a>
 </div>
 <script>
 	function addCart() {

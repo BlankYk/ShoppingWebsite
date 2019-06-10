@@ -85,7 +85,7 @@ public class JDBCDao {
 				pstmt = conn.prepareStatement(sql);
 
 				pstmt = conn.prepareStatement(sql);
-				for (int i = 0; i <= cart.length; i++) {
+				for (int i = 0; i < cart.length; i++) {
 					pstmt.setString(1, "[" + cart[i] + "]");
 				}
 				pstmt.setString(2, username);
