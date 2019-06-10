@@ -21,39 +21,50 @@ import cn.hutool.log.LogFactory;
 @WebServlet("/Find")
 public class Find extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private JDBCDao jdbcDao;
-    private Log log;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Find() {
-        super();
-        jdbcDao = new JDBCDao();
-        log = LogFactory.get(getClass());
-        // TODO Auto-generated constructor stub
-    }
+	private JDBCDao jdbcDao;
+	private Log log;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		String username = session.getAttribute("username").toString();
-		String carts = jdbcDao.findCart(username);
-		log.debug(carts);
-		
-		response.setContentType("application/text;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.print(carts);
+	public Find() {
+		super();
+		jdbcDao = new JDBCDao();
+		log = LogFactory.get(getClass());
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request,response);
+		HttpSession session = request.getSession();
+		try {
+			String username = session.getAttribute("username").toString();
+			String carts = jdbcDao.findCart(username);
+			log.debug(carts);
+
+			response.setContentType("application/text;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.print(carts);
+		} catch (NullPointerException e) {
+			log.debug("没有登录");
+			return;
+		}
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

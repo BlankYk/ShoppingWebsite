@@ -76,6 +76,19 @@ public class JDBCDao{
 			if(flag>=0) {
 				return true;
 			}
+		}catch(NullPointerException e) {
+			Connection conn2 = DbUtil.getConnection();
+			Log log2 = LogFactory.get(getClass());
+			String sql2 = "update user set cart = ? where username = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, x);
+			pstmt.setString(2, username);
+			int flag = pstmt.executeUpdate();
+//			System.out.println(flag);
+			if(flag>=0) {
+				return true;
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

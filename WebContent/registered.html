@@ -14,7 +14,8 @@
 				placeholder="再次输入密码" />
 		</p>
 		<input type="submit" value="注册" id="sub"
-			class="btn btn-default disabled" /> <input type="reset" value="重置"
+			class="btn btn-default disabled" /> 
+		<input type="reset" value="重置"
 			class="btn btn-default" />
 	</form>
 	<script>
@@ -31,13 +32,16 @@
 		display : "两次密码必须一致",
 		rules : 'same(password)'
 	} ], function(obj) {
-		if (obj.errors.length === 0) {
+		if (obj.errors.length > 0) {
+			
+		}else{
+			console.log("2");
 			$("#sub").removeClass("disabled");
 		}
+		
 	});
 		$('input').keyup(function(){
 			console.log("1");
-			
 			validator.validate();
 		});
 		
