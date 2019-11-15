@@ -20,31 +20,11 @@ public class Registered extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private JDBCDao jdbcDao;
 	private Log log;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public Registered() {
 		super();
 		log = LogFactory.get(getClass());
 		jdbcDao = new JDBCDao();
-		// TODO Auto-generated constructor stub
 	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		this.doPost(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -54,19 +34,17 @@ public class Registered extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String userName = request.getParameter("username");
 		String password = request.getParameter("password");
-		log.debug("创建用户："+userName+"密码："+password);
+		log.debug("创建用户：" + userName + "密码：" + password);
 		try {
 			if (jdbcDao.add(userName, password)) {
 				out.print("<script>alert('注册成功！');</script>");
-			}else {
+			} else {
 				out.print("<script>alert('注册失败！');</script>");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			response.setHeader("refresh", "1;url=/ShoppingWebsite/");
+			response.setHeader("refresh", "0;url=/ShoppingWebsite/");
 		}
-
 	}
-
 }

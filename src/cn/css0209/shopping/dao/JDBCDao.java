@@ -10,7 +10,6 @@ import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 
 public class JDBCDao {
-
 	public boolean add(String name, String pwd) {
 		// TODO 自动生成的方法存根
 		Connection conn = DbUtil.getConnection();
@@ -24,15 +23,12 @@ public class JDBCDao {
 			if (pstmt.executeUpdate() > 0) {
 				return true;
 			}
-
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-
 		return false;
 	}
-
 	public boolean login(UserDo userDo) {
 		// TODO 自动生成的方法存根
 		Connection conn = DbUtil.getConnection();
@@ -54,7 +50,6 @@ public class JDBCDao {
 			return false;
 		}
 	}
-
 	public boolean addCart(String username, String[] cart) {
 		Connection conn = DbUtil.getConnection();
 		Log log = LogFactory.get(getClass());
@@ -73,7 +68,6 @@ public class JDBCDao {
 			}
 			pstmt.setString(2, username);
 			int flag = pstmt.executeUpdate();
-//			System.out.println(flag);
 			if (flag >= 0) {
 				return true;
 			}
@@ -82,7 +76,6 @@ public class JDBCDao {
 		}
 		return false;
 	}
-
 	public String findCart(String username) {
 		Connection conn = DbUtil.getConnection();
 
@@ -102,5 +95,4 @@ public class JDBCDao {
 			return "";
 		}
 	}
-
 }

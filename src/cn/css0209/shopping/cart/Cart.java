@@ -48,7 +48,6 @@ public class Cart extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		//接受json数据
 		HttpSession session = request.getSession();
 		String username = session.getAttribute("username").toString();
@@ -59,8 +58,7 @@ public class Cart extends HttpServlet {
 		for(int i=0;i<arr.length;i++) {
 			arr[i] = cart.getStr(i);
 		}
-		
-		//返回
+		//返回json
 		JSONObject result = new JSONObject();
 		response.setContentType("application/json;charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -75,5 +73,4 @@ public class Cart extends HttpServlet {
 		}
 		out.print(result);
 	}
-
 }

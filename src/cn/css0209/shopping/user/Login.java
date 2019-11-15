@@ -21,29 +21,33 @@ import cn.hutool.log.LogFactory;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private JDBCDao jdbcDao;
-    private Log log;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Login() {
-        super();
-        log = LogFactory.get(getClass());
-        jdbcDao = new JDBCDao();
-        // TODO Auto-generated constructor stub
-    }
-
+	private Log log;
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doPost(request,response);
+	public Login() {
+		super();
+		log = LogFactory.get(getClass());
+		jdbcDao = new JDBCDao();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doPost(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setCharacterEncoding("utf-8");
 		response.setHeader("Content-type", "text/html;charset=utf-8");
@@ -56,18 +60,17 @@ public class Login extends HttpServlet {
 		userDo.setPwd(password);
 		try {
 			boolean flag = jdbcDao.login(userDo);
-			if(flag) {
-				
+			if (flag) {
 				HttpSession session = request.getSession();
 				session.setAttribute("username", username);
 				session.setAttribute("password", password);
-				log.debug("用户 "+username+" 登陆成功");
+				log.debug("用户 " + username + " 登陆成功");
 				out.print("<script>window.location.assign('/ShoppingWebsite/');</script>");
-			}else {
-				log.debug("用户 "+username+" 登录失败，失败密码："+password);
+			} else {
+				log.debug("用户 " + username + " 登录失败，失败密码：" + password);
 				out.print("<script>alert('用户名或密码错误！');history.back();</script>");
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("/ShoppingWebsite/");
 		}
